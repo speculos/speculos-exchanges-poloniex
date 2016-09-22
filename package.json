@@ -1,0 +1,31 @@
+{
+	"name":"speculos-exchanges-poloniex",
+	"version":"0.1.0",
+	"description":"Poloniex exchange support for Speculos",
+	"repository":{
+		"type":"git",
+		"url":"http://github.com/speculos/speculos-exchanges-poloniex"
+	},
+	"license":"MIT",
+	"engines":{
+		"node":"~6"
+	},
+	"main":"lib/index.js",
+	"scripts":{
+		"start":"node ."
+	},
+	"dependencies":{
+		"bunyan":"1.8.1",
+		"enum":"2.3.0",
+		"joi":"9.0.4",
+		"tiny-promisify":"0.1.1",
+		"co":"4.6.0",
+		"koa":"1.2.4",
+		"koa-body":"1.5.0",
+		"koa-router":"5.4.0",
+		"koa-cors":"0.0.16",
+		"jsonwebtoken":"7.1.9",
+		"autobahn":"0.10.1",
+		"co-request":"1.0.0"
+	}
+}
