@@ -1,0 +1,65 @@
+swagger: '2.0'
+
+info:
+  version: 0.1.0
+  title: speculos-exchanges-poloniex
+  description: Poloniex speculos exchange API.
+  contact:
+    name: Official repository
+    url: https://github.com/speculos/speculos-exchanges-poloniex
+  license:
+    name: MIT
+
+securityDefinitions:
+  token:
+    type: apiKey
+    description: |
+      Application token (JWT) retrieved from a centralized auth provider.
+      This token is hold in a `bearer` authorization header, taken from the [OAuth2 RFC](https://tools.ietf.org/html/rfc6750).
+    in: header
+    name: Authorization
+
+paths:
+  /tokens:
+    post:
+      description: |
+        Creates a new JWT to hold user credentials for the exchange.
+        The input parameters are exchange-specific, depending on the required underlying credentials.
+
+        The newly created JWT will be the only
+      parameters:
+        - name: credentials
+          in: body
+          description: Account credentials.
+          schema:
+            title: Credentials
+            type: object
+            properties:
+              apiKey:
+                type: string
+                pattern: /^[A-Z0-9]{8}-[A-Z0-9]{8}-[A-Z0-9]{8}-[A-Z0-9]{8}$/
+              apiSecret:
+                type: string
+                pattern: /^[0-9a-f]{128}$/
+            required:
+              - apiKey
+              - apiSecret
+          required: true
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Success.
+          schema:
+            title: ExchangeToken
+            type: object
+            properties:
+              token:
+                type: string
+            required:
+              - token
+        409:
+          description: |
+            - `validation`: Missing or invalid parameter. Refer to the `details` object for more information
+      security:
+        - token: []
