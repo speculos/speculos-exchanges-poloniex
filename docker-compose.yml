@@ -1,0 +1,25 @@
+# Docker compose file for speculos-exchanges-poloniex development
+#
+# build :
+#   docker-compose build
+# run :
+#   docker-compose up
+# attach :
+#   docker-compose exec speculos-poloniex /bin/bash
+
+version: '2'
+
+services:
+  speculos-poloniex:
+    build: .
+    image: speculos-poloniex:0.1.0
+    environment:
+      NODE_ENV: development
+    command: nodemon .
+    ports:
+      - "8002:80"
+    volumes:
+      - "./logs:/app/logs"
+      - "./keys:/app/keys"
+      - "./config:/app/config"
+      - "./lib:/app/lib"

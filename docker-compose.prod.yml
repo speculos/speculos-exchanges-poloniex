@@ -1,0 +1,24 @@
+# Docker compose file for speculos-exchanges-poloniex production
+#
+# build :
+#   docker-compose -f docker-compose.prod.yml build
+# run :
+#   docker-compose -f docker-compose.prod.yml up
+# attach :
+#   docker-compose -f docker-compose.prod.yml exec speculos-poloniex /bin/bash
+
+version: '2'
+
+services:
+  speculos-poloniex:
+    build: .
+    image: speculos-poloniex:0.1.0
+    environment:
+      NODE_ENV: production
+    command: node .
+    ports:
+      - "8002:80"
+    volumes:
+      - "./logs:/app/logs"
+      - "./keys:/app/keys"
+      - "./config:/app/config"
