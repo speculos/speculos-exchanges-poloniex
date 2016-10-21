@@ -9,7 +9,6 @@ speculos-exchanges-poloniex. To run the entire speculos stack, view [TODO].
 All sources files are mounted as volumes, and the application is launched with
 `nodemon`. This allow to edit files without rebuilding the docker image.
 
-[TODO port config]
 
 #### Build
 
@@ -17,8 +16,7 @@ All sources files are mounted as volumes, and the application is launched with
 
 #### Run
 
-    docker-compose up
-    docker-compose up -d  //daemon
+    EXTERNAL_PORT=8002 docker-compose up
 
 #### Attaching a terminal to the container
 
@@ -38,7 +36,7 @@ Only `config`, `keys`, `logs` and `db` folders are mounted as volumes.
 
 #### Run
 
-    docker-compose -f docker-compose.prod.yml up
+    EXTERNAL_PORT=8002 docker-compose -f docker-compose.prod.yml up
 
 #### Deploy
 
